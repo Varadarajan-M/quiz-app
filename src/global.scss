@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Codystar&family=Poppins:wght@300;400;600&display=swap');
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+// html {
+// 	height: 100vh;
+// }
+
+body {
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: antiquewhite;
+	height: 100vh;
+	overflow: auto;
+}
+
+@mixin btn-styles {
+	padding: 0.5rem;
+	border: none;
+	outline: none;
+	border-radius: 30px;
+	color: antiquewhite;
+	background-color: black;
+	cursor: pointer;
+	box-shadow: 0 10px 10px 0.3px rgba(black, 0.2);
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+#root {
+	margin: auto;
+}
+.app {
+	max-width: min(700px, 63vw);
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding: 1rem 0;
+	margin: auto;
+	height: fit-content;
+	justify-content: center;
+	align-items: center;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		font-family: 'Codystar', cursive;
+
+		&__react-logo {
+			height: 100%;
+			width: 100px;
+			object-fit: cover;
+		}
+		&__title {
+			font-size: 3rem;
+		}
+	}
+
+	&__progress-container {
+		display: grid;
+		width: 100%;
+		progress {
+			height: 30px;
+			width: 100%;
+			grid-row: 1;
+			grid-column: 1/6;
+		}
+		&__question-no {
+			grid-row: 2;
+			grid-column: 1/3;
+		}
+		&__current-points {
+			grid-row: 2;
+			grid-column: 4/6;
+			justify-self: end;
+		}
+	}
+
+	&__start-screen-container {
+		text-align: center;
+		display: flex;
+		gap: 20px;
+		flex-direction: column;
+		&__greeting {
+			font-weight: 600;
+			font-size: 1.8rem;
+		}
+		&__message {
+			font-weight: 500;
+			font-size: 1.3rem;
+		}
+		&__btn.btn-start {
+			@include btn-styles;
+			margin-top: 10px;
+			height: 50px;
+			font-size: 1.3rem;
+			font-weight: 600;
+		}
+	}
+
+	&__quiz-container {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		width: 100%;
+		&__question {
+			margin-bottom: 15px;
+			font-size: 1.5rem;
+			width: 100%;
+			text-align: center;
+		}
+		&__option {
+			width: 100%;
+			@include btn-styles;
+			font-size: 1rem;
+			font-weight: 300;
+			transition: all 0.3s ease-in;
+			&:not(:disabled):hover {
+				translate: 20px 0;
+			}
+
+			&:disabled {
+				cursor: not-allowed;
+			}
+		}
+	}
+
+	&__footer {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		&__next-btn {
+			@include btn-styles;
+			width: 100px;
+		}
+		&__timer {
+			padding: 0.5rem 0.8rem;
+			background: rgba(0, 0, 0, 0.1);
+			border-radius: 20px;
+			width: 72px;
+			font-weight: 600;
+		}
+	}
+
+	&__finished-screen-container {
+		display: grid;
+		gap: 25px;
+		place-items: center;
+		width: 100%;
+
+		&__message {
+			border-radius: 30px;
+			padding: 0.5rem 0.8rem;
+			width: 100%;
+			background: aquamarine;
+			text-align: center;
+			font-weight: 600;
+			font-size: 1.1rem;
+		}
+
+		&__restart-btn {
+			@include btn-styles;
+			width: 50%;
+			background-color: rgb(36 38 37 / 10%);
+			color: black;
+			border: 1px solid #d1cac682;
+			font-weight: 600;
+			margin-top: 15px;
+		}
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.app {
+		max-width: 85vw;
+		&__header {
+			&__react-logo {
+				object-fit: contain;
+			}
+			&__title {
+				font-size: 2rem;
+			}
+		}
+
+		&__start-screen-container {
+			&__greeting {
+				font-size: 1.5rem;
+			}
+			&__message {
+				font-size: 1.1rem;
+			}
+			&__btn.btn-start {
+				font-size: 1rem;
+			}
+		}
+	}
+}

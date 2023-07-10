@@ -1,0 +1,5 @@
+{
+	"quizTitle": "The React Quiz",
+	"quizApi": "https://codingheroes.io/api-react-course-projects/questions.json",
+	"maxTimeInSeconds": 500
+}
