@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Codystar&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Codystar&family=Poppins:wght@300;400;500;600&display=swap');
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -115,6 +115,18 @@ body {
 			width: 100%;
 			text-align: center;
 		}
+		&__difficulty {
+			text-align: center;
+			margin: auto;
+			margin-top: -20px;
+			margin-bottom: 10px;
+			font-weight: 500;
+			border-radius: 30px;
+			padding: 5px 15px;
+			background: #ebcaca;
+			width: fit-content;
+			font-size: 13px;
+		}
 		&__option {
 			width: 100%;
 			@include btn-styles;
@@ -157,12 +169,22 @@ body {
 
 		&__message {
 			border-radius: 30px;
-			padding: 0.5rem 0.8rem;
+			padding: 0.8rem;
 			width: 100%;
 			background: aquamarine;
 			text-align: center;
 			font-weight: 600;
 			font-size: 1.1rem;
+		}
+
+		&__overview {
+			display: grid;
+			place-items: center;
+			text-align: center;
+			gap: 2px;
+			background: #ffcbcb;
+			padding: 15px 37px;
+			border-radius: 11px;
 		}
 
 		&__restart-btn {

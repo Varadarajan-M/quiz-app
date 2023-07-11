@@ -1,6 +1,15 @@
 import React, { useEffect, useCallback } from 'react';
 import { useQuiz } from '../store/QuizContext';
 
+function Footer() {
+	return (
+		<footer className='app__footer'>
+			<Timer />
+			<NextBtn />
+		</footer>
+	);
+}
+
 const addZeroToNums = (num: number) => (num < 10 ? `0${num}` : `${num}`);
 
 function Timer() {
@@ -46,15 +55,6 @@ function NextBtn() {
 			{isLastQuestion ? 'Finish' : 'Next'}
 		</button>
 	) : null;
-}
-
-function Footer() {
-	return (
-		<footer className='app__footer'>
-			<Timer />
-			<NextBtn />
-		</footer>
-	);
 }
 
 export default React.memo(Footer);

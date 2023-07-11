@@ -2,7 +2,48 @@ import React from 'react';
 import { useQuiz } from '../store/QuizContext';
 
 function FinishedScreen() {
-	const { state, dispatch } = useQuiz();
+	const { dispatch } = useQuiz();
+
+	const handleRestart = () => dispatch({ type: 'quiz/restart' });
+
+	return (
+		<div className='app__finished-screen-container'>
+			<ScoreMessage />
+
+			<ScoreOverview />
+
+			<button
+				className='app__finished-screen-container__restart-btn'
+				onClick={handleRestart}
+			>
+				Restart
+			</button>
+		</div>
+	);
+}
+
+function ScoreOverview() {
+	const {
+		state: { currentProgress, correct, wrong },
+	} = useQuiz();
+
+	return (
+		<div className='app__finished-screen-container__overview'>
+			<span className='app__finished-screen-container__overview__status'>
+				Questions Answered : {currentProgress} ✅
+			</span>
+			<span className='app__finished-screen-container__overview__status'>
+				Correct : {correct} 😀
+			</span>
+			<span className='app__finished-screen-container__overview__status'>
+				Wrong : {wrong} 😢
+			</span>
+		</div>
+	);
+}
+
+function ScoreMessage() {
+	const { state } = useQuiz();
 
 	const { currentPoints, totalPoints } = state;
 
@@ -16,25 +57,11 @@ function FinishedScreen() {
 	if (percentage >= 0 && percentage < 50) emoji = '🤨';
 	if (percentage === 0) emoji = '🤦‍♂️';
 
-	const handleRestart = () => dispatch({ type: 'quiz/restart' });
-
 	return (
-		<div className='app__finished-screen-container'>
-			<span className='app__finished-screen-container__message'>
-				{emoji} You scored {currentPoints} out of {totalPoints} (
-				{percentage.toFixed(2)}%)
-			</span>
-			<span className='app__finished-screen-container__highscore'>
-				(Highscore: {currentPoints} points)
-			</span>
-
-			<button
-				className='app__finished-screen-container__restart-btn'
-				onClick={handleRestart}
-			>
-				Restart
-			</button>
-		</div>
+		<span className='app__finished-screen-container__message'>
+			{emoji} You scored {currentPoints} out of {totalPoints} (
+			{percentage.toFixed(2)}%)
+		</span>
 	);
 }
 

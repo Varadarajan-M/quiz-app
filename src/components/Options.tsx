@@ -36,7 +36,7 @@ function Options({
 	onOptionClick,
 }: OptionsProps) {
 	const getOptionBgColor = (index: number) => {
-		return hasAnswered ? (correctOption === index ? '#6e6e6e' : '#ab2626') : '';
+		return hasAnswered ? (correctOption === index ? '#3cd73c' : '#ab2626') : '';
 	};
 
 	return (

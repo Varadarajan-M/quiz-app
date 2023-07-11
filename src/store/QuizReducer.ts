@@ -25,6 +25,8 @@ export interface State {
 	totalPoints: number;
 	remainingTimeInSeconds: number;
 	highScore: number;
+	correct: number;
+	wrong: number;
 }
 
 export const initialState: State = {
@@ -37,6 +39,8 @@ export const initialState: State = {
 	totalPoints: 0,
 	remainingTimeInSeconds: config.maxTimeInSeconds,
 	highScore: 0,
+	correct: 0,
+	wrong: 0,
 };
 
 export function reducer(state: State = initialState, action: any): State {
@@ -75,20 +79,29 @@ export function reducer(state: State = initialState, action: any): State {
 
 		case 'quiz/answer':
 			const { userSelectedOption } = action.payload;
-			const { questions, activeIndex, currentProgress } = state;
+			const {
+				questions,
+				activeIndex,
+				currentProgress,
+				correct,
+				wrong,
+				currentPoints,
+			} = state;
 			const currentQuestion = questions[activeIndex];
 
 			const isCorrect = currentQuestion.correctOption === userSelectedOption;
 
 			const points = isCorrect
-				? state.currentPoints + currentQuestion.points
-				: state.currentPoints;
+				? currentPoints + currentQuestion.points
+				: currentPoints;
 
 			return {
 				...state,
 				answer: userSelectedOption,
 				currentPoints: points,
 				currentProgress: currentProgress + 1,
+				correct: isCorrect ? correct + 1 : correct,
+				wrong: !isCorrect ? wrong + 1 : wrong,
 			};
 
 		case 'quiz/next':

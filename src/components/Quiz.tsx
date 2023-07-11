@@ -54,12 +54,19 @@ function Quiz() {
 	}
 
 	if (status === 'Ready') {
-		const { question, options, correctOption } = activeQuestion;
+		const { question, options, correctOption, points } = activeQuestion;
+
+		const difficulty =
+			points === 10 ? 'Easy' : points === 20 ? 'Medium' : 'Hard';
+
 		return (
 			<Fragment>
 				<ProgressTracker />
 				<div className='app__quiz-container'>
 					<h4 className='app__quiz-container__question'>{question}</h4>
+					<p className='app__quiz-container__difficulty'>
+						Difficulty: {difficulty}, Points: {points}{' '}
+					</p>
 					<Options
 						options={options}
 						hasAnswered={hasAnswered}
